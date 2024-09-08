@@ -26,13 +26,7 @@ namespace Editor.Shortcuts
 		public static string[] selectedMenus;
 		public static UnityEngine.Object[] selectedObjects;
 
-		[InitializeOnLoadMethod]
-		public static void Initialise()
-		{
-			EditorApplication.update += OnUpdate;
-		}
-
-		public static void OnUpdate()
+		public static void OnNextUpdate()
 		{
 			if (selectedMenus == null || selectedMenus.Length == 0)
 			{
@@ -80,6 +74,8 @@ namespace Editor.Shortcuts
 		{
 			// Have to execute outside the scope of the popup
 			selectedMenus = selection.ToArray();
+
+			EditorApplicationUtility.AddNextUpdateCallback(OnNextUpdate);
 		}
 	}
 }

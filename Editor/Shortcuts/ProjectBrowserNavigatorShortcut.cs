@@ -31,7 +31,7 @@ namespace Editor.Shortcuts
 		public static void Initialise()
 		{
 			var folderStacksJson = UnityEditor.SessionState.GetString(SESSION_PREFS_KEY, null);
-			folderStacks = JsonConvert.DeserializeObject<FolderStacksCollection>(folderStacksJson);
+			folderStacks = JsonConvert.DeserializeObject<FolderStacksCollection>(folderStacksJson) ?? new();
 
 			EditorApplication.update -= OnUpdate_Safe;
 			EditorApplication.update += OnUpdate_Safe;
